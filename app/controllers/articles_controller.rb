@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: %i[ show edit update destroy ]
+  before_action :correct_user, only: %i[ edit update destroy ]
 
   # GET /articles or /articles.json
   def index
@@ -21,7 +22,8 @@ class ArticlesController < ApplicationController
 
   # POST /articles or /articles.json
   def create
-    @article = Article.new(article_params)
+    #@article = Article.new(article_params)
+    @article = current_user.articles.build(article_params)
 
     respond_to do |format|
       if @article.save
@@ -68,5 +70,9 @@ class ArticlesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def article_params
       params.expect(article: [ :title, :body, :summary ])
+    end
+
+    def correct_user
+      redirect_to articles_path, alert: "権限がありません。" unless @article.user == current_user
     end
 end
