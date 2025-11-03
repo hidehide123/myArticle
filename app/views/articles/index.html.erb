@@ -2,15 +2,15 @@
 
   <% provide :title, "記事一覧" %>
 
-  <p style="color: green"><%= notice %></p>
-
   <h1>記事一覧</h1>
 
   <table class="table table-hover table-striped table-bordered shadow rounded overflow-hidden align-middle">
     <thead class="table-dark text-center text-uppercase custom-thead">
       <tr>
-        <th style="width: 25%;">タイトル</th>
-        <th style="width: 55%;">本文</th>
+        <th style="width: 15%;">タイトル</th>
+        <th style="width: 12%;">投稿者</th>
+        <th style="width: 15%;">概要</th>
+        <th style="width: 38%;">本文</th>
         <th style="width: 20%;">操作</th>
       </tr>
     </thead>    
@@ -18,7 +18,9 @@
       <% @articles.each do |article| %>
         <tr>
           <td><%= article.title %></td>
-          <td><%= truncate(article.body, length: 50) %></td>
+          <td><%= article.user.email.split('@').first %></td>
+          <td><%= truncate(article.summary, length: 10) %></td>
+          <td><%= truncate(article.body, length: 25) %></td>
           <td class="text-center">
             <div class="d-inline-flex gap-2">
               <!-- 表示ボタン -->
