@@ -2,6 +2,8 @@ ja:
   devise:
     sessions:
       new:
+        email: "メールアドレス"
+        password: "パスワード"
         sign_in: "ログイン"
       signed_in: "ログインしました。"
       signed_out: "ログアウトしました。"
@@ -15,6 +17,9 @@ ja:
       new:
         forgot_your_password: "パスワードをお忘れですか？"
 
+    confirmations:
+      send_instructions: "確認メールを送信しました。"
+
     failure:
       unauthenticated: "ログインしてください。"
       invalid: "メールアドレスまたはパスワードが正しくありません。"
@@ -25,6 +30,7 @@ ja:
       locked: "アカウントがロックされています。"
       timeout: "一定時間が経過したため、再度ログインしてください。"
       inactive: "アカウントが有効化されていません。"
+      already_authenticated: "すでにログインしています。"
 
     shared:
       links:
